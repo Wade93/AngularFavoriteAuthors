@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row justify-content-around">
+      <h1 class="display-3">Favorite Authors</h1>
+  </div>
+    <section>
+        <fieldset>
+          <div class="row justify-content-center">
+              <h4>Add an author</h4>
+          </div>
+            <div class="row justify-content-center">
+                <form class="col-6" (submit)="onSubmit($event, authorForm)" #authorForm="ngForm">
+                    <div class="form-group">
+                      <label for="name">Author Name</label>
+                      <input 
+                      type="text" 
+                      [(ngModel)]="author.name" 
+                      #name="ngModel" 
+                      required 
+                      name="name" 
+                      id="name" 
+                      class="form-control" 
+                      placeholder="Brian Jaques"
+                      />
+                      <div *ngIf="(name.touched || name.dirty) && name.errors">
+                        <div *ngIf="name?.errors?.required" class="alert alert-danger">
+                          You must enter an author name!
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary mr-5" *ngIf="authorForm.valid">Submit</button>
+                    <button class="btn btn-secondary" [routerLink]="">Cancel</button>
+                </form>
+            </div>
+        </fieldset>
+    </section>
+</div>
