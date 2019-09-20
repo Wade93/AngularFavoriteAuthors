@@ -1,18 +1,19 @@
+const bodyParser = require('body-parser')
 const express = require("express");
+const path = require('path');
+
 const app = express();
-const flash = require('express-flash');
-const session = require('express-session');
-app.use(session({
-    secret: 'keyboardkitteh',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-  }))
-app.use(flash());
-app.use(express.json());
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-app.use(express.static( __dirname + '/public/dist/public' ));
-require('./server/config/mongoose.js')
-require('./server/config/routes')(app)
-app.listen(8000, () => console.log("listening on port 8000"));
+const port = process.env.PORT || 8000;
+
+console.log(port)
+
+app.use(express.static(path.resolve('./public/dist/public' )));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+require('./public/server/config/database')
+
+const routes = require('./public/server/routes')
+app.use(routes);
+
+app.listen(port, () => console.log(`express server listening on port ${port}`));

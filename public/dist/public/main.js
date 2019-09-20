@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"row justify-content-around\">\n        <h1 class=\"display-3\">Favorite Authors</h1>\n    </div>\n    <section>\n        <fieldset>\n            <div class=\"row justify-content-center\">\n                <h4>Edit Author</h4>\n            </div>\n            <div class=\"row justify-content-center\">\n                <form class=\"col-6\" *ngIf=\"author\" (submit)=\"onEdit(author)\" #authorForm=\"ngForm\">\n                    <div class=\"form-group\">\n                    <label for=\"name\">Author Name</label>\n                    <input \n                    type=\"text\" \n                    [ngModel]=\"author ?. name\" \n                    #name=\"ngModel\" \n                    required \n                    name=\"name\" \n                    id=\"name\" \n                    class=\"form-control\" \n                    />\n                    <div *ngIf=\"(name.touched || name.dirty) && name.errors\">\n                        <div *ngIf=\"name?.errors?.required\" class=\"alert alert-danger\">\n                        You must enter an author name!\n                        </div>\n                    </div>\n                    </div>\n                    <button class=\"btn btn-secondary mr-5\" *ngIf=\"authorForm.valid\">Submit</button>\n                    <button class=\"btn btn-secondary\" [routerLink]=\"\">Cancel</button>\n                </form>\n            </div>\n        </fieldset>\n    </section>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"row justify-content-around\">\n        <h1 class=\"display-3\">Favorite Authors</h1>\n    </div>\n    <section>\n        <fieldset>\n            <div class=\"row justify-content-center\">\n                <h4>Edit Author</h4>\n            </div>\n            <div class=\"row justify-content-center\">\n                <form class=\"col-6\" *ngIf=\"author\" (submit)=\"onEdit(author)\" #authorForm=\"ngForm\">\n                    <div class=\"form-group\">\n                    <label for=\"name\">Author Name</label>\n                    <input \n                    type=\"text\" \n                    [(ngModel)]=\"author.name\" \n                    #name=\"ngModel\" \n                    required \n                    name=\"name\" \n                    id=\"name\" \n                    class=\"form-control\" \n                    />\n                    <div *ngIf=\"(name.touched || name.dirty) && name.errors\">\n                        <div *ngIf=\"name?.errors?.required\" class=\"alert alert-danger\">\n                        You must enter an author name!\n                        </div>\n                    </div>\n                    </div>\n                    <button class=\"btn btn-secondary mr-5\" *ngIf=\"authorForm.valid\">Submit</button>\n                    <button class=\"btn btn-secondary\" [routerLink]=\"\">Cancel</button>\n                </form>\n            </div>\n        </fieldset>\n    </section>\n</div>\n");
 
 /***/ }),
 
@@ -344,7 +344,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _authors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./authors */ "./src/app/authors/index.ts");
+/* harmony import */ var _resolvers_author_resolver__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resolvers/author.resolver */ "./src/app/resolvers/author.resolver.ts");
+/* harmony import */ var _authors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./authors */ "./src/app/authors/index.ts");
+
 
 
 
@@ -362,19 +364,20 @@ const routes = [
         children: [
             {
                 path: '',
-                component: _authors__WEBPACK_IMPORTED_MODULE_4__["AuthorListComponent"],
+                component: _authors__WEBPACK_IMPORTED_MODULE_5__["AuthorListComponent"],
+                resolve: { authors: _resolvers_author_resolver__WEBPACK_IMPORTED_MODULE_4__["AuthorResolver"] }
             },
             {
                 path: 'new',
-                component: _authors__WEBPACK_IMPORTED_MODULE_4__["AuthorNewComponent"],
+                component: _authors__WEBPACK_IMPORTED_MODULE_5__["AuthorNewComponent"],
             },
             {
                 path: ':id',
-                component: _authors__WEBPACK_IMPORTED_MODULE_4__["AuthorInfoComponent"],
+                component: _authors__WEBPACK_IMPORTED_MODULE_5__["AuthorInfoComponent"],
             },
             {
                 path: ':id/edit',
-                component: _authors__WEBPACK_IMPORTED_MODULE_4__["AuthorEditComponent"]
+                component: _authors__WEBPACK_IMPORTED_MODULE_5__["AuthorEditComponent"]
             }
         ],
     },
@@ -428,9 +431,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor() {
-        this.title = 'public';
-    }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -456,17 +456,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _authors_author_new_author_new_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./authors/author-new/author-new.component */ "./src/app/authors/author-new/author-new.component.ts");
 /* harmony import */ var _authors_author_info_author_info_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./authors/author-info/author-info.component */ "./src/app/authors/author-info/author-info.component.ts");
 /* harmony import */ var _authors_author_list_author_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./authors/author-list/author-list.component */ "./src/app/authors/author-list/author-list.component.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/http.service */ "./src/app/services/http.service.ts");
-/* harmony import */ var _nav_nav_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./nav/nav.component */ "./src/app/nav/nav.component.ts");
-/* harmony import */ var _authors_author_edit_author_edit_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./authors/author-edit/author-edit.component */ "./src/app/authors/author-edit/author-edit.component.ts");
+/* harmony import */ var _authors_author_edit_author_edit_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./authors/author-edit/author-edit.component */ "./src/app/authors/author-edit/author-edit.component.ts");
+/* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./resolvers */ "./src/app/resolvers/index.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _nav_nav_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./nav/nav.component */ "./src/app/nav/nav.component.ts");
 
 
 
@@ -483,22 +483,22 @@ __webpack_require__.r(__webpack_exports__);
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
             _authors_author_list_author_list_component__WEBPACK_IMPORTED_MODULE_8__["AuthorListComponent"],
             _authors_author_new_author_new_component__WEBPACK_IMPORTED_MODULE_6__["AuthorNewComponent"],
             _authors_author_info_author_info_component__WEBPACK_IMPORTED_MODULE_7__["AuthorInfoComponent"],
-            _nav_nav_component__WEBPACK_IMPORTED_MODULE_11__["NavComponent"],
-            _authors_author_edit_author_edit_component__WEBPACK_IMPORTED_MODULE_12__["AuthorEditComponent"]
+            _nav_nav_component__WEBPACK_IMPORTED_MODULE_12__["NavComponent"],
+            _authors_author_edit_author_edit_component__WEBPACK_IMPORTED_MODULE_9__["AuthorEditComponent"]
         ],
         imports: [
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"],
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
         ],
-        providers: [_services_http_service__WEBPACK_IMPORTED_MODULE_10__["HttpService"]],
+        providers: [_resolvers__WEBPACK_IMPORTED_MODULE_10__["AuthorResolver"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
@@ -893,6 +893,60 @@ NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/resolvers/author.resolver.ts":
+/*!**********************************************!*\
+  !*** ./src/app/resolvers/author.resolver.ts ***!
+  \**********************************************/
+/*! exports provided: AuthorResolver */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthorResolver", function() { return AuthorResolver; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http.service */ "./src/app/services/http.service.ts");
+
+
+
+let AuthorResolver = class AuthorResolver {
+    constructor(httpService) {
+        this.httpService = httpService;
+    }
+    resolve() {
+        return this.httpService.getAuthors();
+    }
+};
+AuthorResolver.ctorParameters = () => [
+    { type: _services_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"] }
+];
+AuthorResolver = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], AuthorResolver);
+
+
+
+/***/ }),
+
+/***/ "./src/app/resolvers/index.ts":
+/*!************************************!*\
+  !*** ./src/app/resolvers/index.ts ***!
+  \************************************/
+/*! exports provided: AuthorResolver */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _author_resolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./author.resolver */ "./src/app/resolvers/author.resolver.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AuthorResolver", function() { return _author_resolver__WEBPACK_IMPORTED_MODULE_1__["AuthorResolver"]; });
+
+
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/http.service.js":
 /*!******************************************!*\
   !*** ./src/app/services/http.service.js ***!
@@ -912,22 +966,22 @@ __webpack_require__.r(__webpack_exports__);
 let HttpService = class HttpService {
     constructor(http) {
         this.http = http;
+        this.base = '/api/authors';
     }
     createAuthor(author) {
-        return this.http.post("/authors", author);
+        return this.http.post(this.base, author);
     }
     getAuthor(id) {
-        return this.http.get(`/authors/${id}`);
+        return this.http.get(`${this.base}/${id}`);
     }
     updateAuthor(author) {
-        return this.http.put(`authors/${author._id}`, author);
+        return this.http.put(`${this.base}/${author._id}`, author);
     }
     deleteAuthor(id) {
-        return this.http.delete(`authors/${id}`);
+        return this.http.delete(`${this.base}/${id}`);
     }
     getAuthors() {
-        console.log("Getting Authors");
-        return this.http.get('/authors');
+        return this.http.get(this.base);
     }
 };
 HttpService.ctorParameters = () => [
@@ -962,22 +1016,22 @@ __webpack_require__.r(__webpack_exports__);
 let HttpService = class HttpService {
     constructor(http) {
         this.http = http;
+        this.base = '/api/authors';
     }
     createAuthor(author) {
-        return this.http.post("/authors", author);
+        return this.http.post(this.base, author);
     }
     getAuthor(id) {
-        return this.http.get(`/authors/${id}`);
+        return this.http.get(`${this.base}/${id}`);
     }
     updateAuthor(author) {
-        return this.http.put(`authors/${author._id}`, author);
+        return this.http.put(`${this.base}/${author._id}`, author);
     }
     deleteAuthor(id) {
-        return this.http.delete(`authors/${id}`);
+        return this.http.delete(`${this.base}/${id}`);
     }
     getAuthors() {
-        console.log("Getting Authors");
-        return this.http.get('/authors');
+        return this.http.get(this.base);
     }
 };
 HttpService.ctorParameters = () => [

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { environment } from '../environments/environment';
+import { AuthorResolver } from './resolvers/author.resolver';
 import * as fromAuthors from './authors';
 
 const enableTracing = false && !environment.production;
@@ -18,6 +19,7 @@ const routes: Routes = [
       {
         path: '',
         component: fromAuthors.AuthorListComponent,
+        resolve: { authors: AuthorResolver}
       },
       {
         path: 'new',
